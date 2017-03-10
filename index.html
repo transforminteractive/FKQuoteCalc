@@ -1,0 +1,98 @@
+
+
+<div id="getQuote">
+
+
+<h1><div style="float: right; margin: -30px 10px 0px 0px; z-index: -1;"><a class="twicon" href="http://twitter.com/home?status=http://feldkalia.com/quote.html">
+                          <img src="/images/tt-twitter-big2.png" height="50" width="142"></a></div>
+Residential Closing Cost Calculator</h1>
+<p>At F|K, there are no hidden fees. Find out instantly how little it
+is going to cost you to have us by your side. Go on…we dare you! Our
+fee is <a href="http://feldkalia.com/faq/general/#17">all-inclusive.</a></p><br>
+
+
+<p>If you like what you hear and how we work, please use the contact
+form on the right side of this page and someone from our office will
+send you an email with the next steps. It’s that easy to get started…
+Or, if you have some questions and would like to hear more, please <a href="http://feldkalia.com/contact.html">contact us</a>. If you prefer email, so do we! </p>
+
+
+<form id="calculatorForm" name="calc_form">
+
+<h1 class="gta_located">Where is the Property Located</h1>
+<div class="formBlock">
+<input id="gta" value="L1" name="R3" onclick="payment(this.form);" checked="checked" type="radio"> <label for="gta">In Toronto</label><br>
+<input id="ont" value="L2" name="R3" onclick="payment(this.form);" type="radio"> <label for="ont">Outside of Toronto</label><br>
+
+ </div>
+
+
+<h1 class="plan">Select your type of transaction</h1>
+
+ <div class="formBlock">
+ <input id="purchase" value="V1" name="R1" onclick="set_fees(this.form,'1');payment(this.form);" checked="checked" type="radio"> <label for="purchase">Purchase</label><br>
+ <input id="sell" value="V2" name="R1" onclick="set_fees(this.form,'2');payment(this.form);" type="radio"> <label for="sell">Sell</label><br>
+ <input id="mortgageRefinance" value="V3" name="R1" onclick="set_fees(this.form,'3');payment(this.form);" type="radio"> <label for="mortgageRefinance">Mortgage Refinance</label>
+ </div>
+
+	<div style="display: block;" id="ValueRow">
+		<h1 class="house">Enter the price of your property</h1>
+		<div class="formBlock">
+        <label for="price">Price of Property</label>
+		<input value="0" class="priceinput" name="price" id="price" onkeyup="payment(this.form);" size="20" type="text">
+        </div>
+	</div>
+
+    <div style="display: block;" id="Rebates">
+
+		<h1 class="checkoffs">Choose what best describes this transaction</h1>
+
+        <div class="formBlock">
+
+	    <label>
+	    <input class="checkbox" id="firstTime" name="NewBuyer" value="ON" onclick="payment(this.form);" type="checkbox">
+		I am a First Time Home Buyer </label><br>
+
+		<label>
+	    <input class="checkbox" id="coPurchase" name="NewBuyer2" value="ON" onclick="form.OldBuyer2.checked = false; payment(this.form);" type="checkbox">
+	    My Co-Purchaser is a First Time Home Buyer</label><br>
+
+	    <label>
+	    <input class="checkbox" id="coPurchase2" name="OldBuyer2" value="ON" onclick="form.NewBuyer2.checked = false; payment(this.form);" type="checkbox">
+	    My Co-Purchaser previously owned a home (anywhere)</label><br>
+		</div>
+
+	</div>
+	<!--//rebates-->
+
+	<h1 class="calcs">Legal and Land Transfer Costs</h1>
+		<div class="formBlock">
+			<p class="calcLabel">Legal Fees (All Inclusive) <span id="fees">$3,415.00 + 13% HST = $3,859.00</span></p>
+			<p class="calcLabel">Your Toronto Land Transfer Tax will be <span class="calcinput" id="TorontolandTax">$37,560.00 (*incl Admin Fee)</span></p>
+				<div style="display: block" id="TLAFINF">
+					<b><font size="1">* Effective April 1, 2016 for more info please see the <a href="http://www1.toronto.ca/wps/portal/contentonly?vgnextoid=769f4b3d0e673510VgnVCM10000071d60f89RCRD&amp;vgnextchannel=4f90ff0e43db1410VgnVCM10000071d60f89RCRD#3" target="_new">City of Toronto's website</a></font></b>
+				</div>
+				<!--//tlafinf-->
+
+			<p class="calcLabel">Your Ontario Land Transfer Tax will be <span class="calcinput" id="landTax">$37,475.00</span></p>
+
+ 		</div>
+
+	<h1 class="dollars">Final Closing Costs</h1>
+		<div class="formBlock">
+			<p class="calcLabel">Total Closing Costs: <span class="calcinput" id="totalClosingCost">$78,894.00</span></p>
+			<b><font size="1">* this fee assumes no unforeseen complications or circumstances arise.</font></b><br>
+			<span id="ClosingCostCalcs"><font color="#FFFFFF">78893.70 = 1865 + 1550 + 443.95 + 37475 - 0 + 37475 - 0 + 84.75 QuoteCalc V5.1.2 </font></span>
+		</div>
+
+<input name="" class="clearButton" onclick="clearForm(this.form); return false;" src="images/butRestart.jpg" alt="Restart Calculator" type="image" height="24" width="111">
+
+<p>&nbsp;</p>
+
+</form>
+
+
+</div>
+<!--//articles-->
+
+			
