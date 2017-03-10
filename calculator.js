@@ -1,10 +1,7 @@
 <!--hide script from older browsers
 //
-<<<<<<< HEAD
-var VER = " QuoteCalc V5.0 ";
-=======
+
 var VER = " QuoteCalc V5.1 ";
->>>>>>> origin/MARCH-MLTT
 
 function hideDiv(id) {
 	if (document.getElementById) { // DOM3 = IE5, NS6
