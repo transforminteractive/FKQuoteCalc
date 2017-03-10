@@ -1,6 +1,6 @@
 <!--hide script from older browsers
 //
-var VER = " QuoteCalc V5.1 ";
+var AppVER = 5.0
 
 function hideDiv(id) {
 	if (document.getElementById) { // DOM3 = IE5, NS6
@@ -70,9 +70,9 @@ function OntarioRebate(inData,Buyer,ScndBuyer,OldBuyer) {
 		}else if (inDataDecimal <= 2000000 ){
 			Rebate = ((0.02 * inDataDecimal) - 3525);
 		}else {
-			Rebate = 4475;
+			Rebate = 4000;
 		}
-		if (Rebate > 4475) Rebate = 4475;
+		if (Rebate > 4000) Rebate = 4000;
 
 		return Rebate * ratio;
 
@@ -114,18 +114,14 @@ function TorontoRebate(inData,Buyer,ScndBuyer,OldBuyer) {
 			ratio = 1;
 		}
 
-		if ( inDataDecimal <= 55000 ) {
+	  if ( inDataDecimal <= 55000 ) {
 			Rebate = (0.005 * inDataDecimal);
-		}else if (inDataDecimal <= 250000 ){
-			Rebate = ((0.01 * inDataDecimal) - 275);
 		}else if (inDataDecimal <= 400000 ){
-			Rebate = ((0.015 * inDataDecimal) - 1525);
-		}else if (inDataDecimal <= 2000000 ){
-			Rebate = ((0.02 * inDataDecimal) - 3525);
+			Rebate = ((0.01 * inDataDecimal) - 275);
 		}else {
-			Rebate = 4475;
+			Rebate = 3725;
 		}
-		if (Rebate > 4475) Rebate = 4475;
+		if (Rebate > 3725) Rebate = 3725;
 
 		return Rebate * ratio;
 
@@ -141,16 +137,13 @@ function TorontoTransferTax(inData) {
 		return 0.0;
 	}
 
-	if ( inDataDecimal <= 55000 ) {
+		if ( inDataDecimal <= 55000 ) {
 			return 0.005 * inDataDecimal;
-		}else if (inDataDecimal <= 250000 ){
-			return (0.01 * inDataDecimal) - 275
 		}else if (inDataDecimal <= 400000 ){
-			return (0.015 * inDataDecimal) - 1525
-		}else{
-			return (0.02 * inDataDecimal) - 3525
+			return (0.01 * (inDataDecimal-55000)) + 275;
+		}else {
+			return (0.02 * (inDataDecimal-400000)) + 3725;
 		}
-
 } // end function
 
 function set_fees(form,transaction) {
@@ -264,7 +257,7 @@ function set_fees(form,transaction) {
 			}
 			LTT.innerHTML = "$"+RoundMoneyTwoDecimals(L-ONRebate) + RebateInfo;
 			Costs.innerHTML = "$" + RoundMoneyTwoDecimals(TCC);
-			CostsInfo.innerHTML = "<font color='#FFFFFF'>" + TCC.toFixed(2) +" = "+ BaseFee +" + "+ F1 +" + "+ PROV_Tax.toFixed(2) +" + "+ L +" - "+ ONRebate +" + "+ TL +" - "+ TORebate +" + "+ TLTTAF + VER +"</font>";
+			CostsInfo.innerHTML = "<font color='#FFFFFF'>" + TCC.toFixed(2) +" = "+ BaseFee +" + "+ F1 +" + "+ PROV_Tax.toFixed(2) +" + "+ L +" - "+ ONRebate +" + "+ TL +" - "+ TORebate +" + "+ TLTTAF +"</font>";
 
 		; break
 
@@ -297,7 +290,7 @@ function set_fees(form,transaction) {
 		LTT.innerHTML = "Buyer pays tax";
 		TLTT.innerHTML = "Buyer pays tax";
 		Costs.innerHTML = "$" + RoundMoneyTwoDecimals(TCC);
-		CostsInfo.innerHTML = "<font color='#FFFFFF'>" + TCC.toFixed(2) +" = "+ BaseFee +" + "+ F1 +" + "+ PROV_Tax.toFixed(2) + VER +"</font>";
+		CostsInfo.innerHTML = "<font color='#FFFFFF'>" + TCC.toFixed(2) +" = "+ BaseFee +" + "+ F1 +" + "+ PROV_Tax.toFixed(2) +"</font>";
 
 		; break
 
@@ -305,6 +298,7 @@ function set_fees(form,transaction) {
 		// refinance
 		showDiv('ValueRow');
 		hideDiv('TLAFINF');
+
 
 		//  Fees = 1132.08+67.92;
 		//  Fees = 1200.00;
@@ -336,7 +330,7 @@ function set_fees(form,transaction) {
 		LTT.innerHTML = "Not Applicable";
 		TLTT.innerHTML = "Not Applicable";
 		Costs.innerHTML = "$" + RoundMoneyTwoDecimals(TCC);
-		CostsInfo.innerHTML = "<font color='#FFFFFF'>" + TCC.toFixed(2) +" = "+ BaseFee +" + "+ F1 +" + "+ PROV_Tax.toFixed(2) + VER + "</font>";
+		CostsInfo.innerHTML = "<font color='#FFFFFF'>" + TCC.toFixed(2) +" = "+ BaseFee +" + "+ F1 +" + "+ PROV_Tax.toFixed(2) +"</font>";
 		; break
 
 	  } // end switch
@@ -352,15 +346,12 @@ function clearForm(form){
 	form.price.value="";
 
 	form.R1[0].checked = true;
-	//form.R2[0].checked = true;
+	form.R2[0].checked = true;
 	form.R3[0].checked = true;
 
 	form.NewBuyer.checked = false;
 	form.NewBuyer2.checked = false;
 	form.OldBuyer2.checked = false;
-
-	showDiv('ValueRow');
- 	showDiv('Rebates');
 
 	LTT = document.getElementById('landTax');
 	TLTT = document.getElementById('TorontolandTax');
@@ -370,9 +361,28 @@ function clearForm(form){
 	LTT.innerHTML = "$0.00";
 	TLTT.innerHTML = "$0.00";
 	Costs.innerHTML = "$0.00";
-	CostsInfo.innerHTML = "<font color='#FAFAFA'> " + VER + " &copy; 2017 </font>";
+	CostsInfo.innerHTML = "<font color='#FAFAFA'> QuoteCalc V"+AppVER+" &copy;2017 </font>";
 
- 	hideDiv('TLAFINF');
+	 form.R1[0].checked = true;
+	 form.R2[0].checked = true;
+	 form.R3[0].checked = true;
+
+	 form.NewBuyer.checked = false;
+	 form.NewBuyer2.checked = false;
+	 form.OldBuyer2.checked = false;
+
+	 LTT = document.getElementById('landTax');
+	 TLTT = document.getElementById('TorontolandTax');
+	 Costs = document.getElementById('totalClosingCost');
+
+	 LTT.innerHTML = "$0.00";
+	 TLTT.innerHTML = "$0.00";
+	 Costs.innerHTML = "$0.00";
+
+	 showDiv('ValueRow');
+	 showDiv('Rebates');
+	 hideDiv('TLAFINF');
+
 
 } // end function
 
