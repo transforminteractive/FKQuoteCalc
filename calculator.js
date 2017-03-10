@@ -1,7 +1,7 @@
 <!--hide script from older browsers
 //
 
-var VER = " QuoteCalc V5.1 ";
+var VER = " QuoteCalc V5.2 GitHub ";
 
 function hideDiv(id) {
 	if (document.getElementById) { // DOM3 = IE5, NS6
