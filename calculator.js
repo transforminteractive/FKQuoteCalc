@@ -1,6 +1,10 @@
 <!--hide script from older browsers
 //
+<<<<<<< HEAD
 var VER = " QuoteCalc V5.0 ";
+=======
+var VER = " QuoteCalc V5.1 ";
+>>>>>>> origin/MARCH-MLTT
 
 function hideDiv(id) {
 	if (document.getElementById) { // DOM3 = IE5, NS6
@@ -70,9 +74,9 @@ function OntarioRebate(inData,Buyer,ScndBuyer,OldBuyer) {
 		}else if (inDataDecimal <= 2000000 ){
 			Rebate = ((0.02 * inDataDecimal) - 3525);
 		}else {
-			Rebate = 4000;
+			Rebate = 4475;
 		}
-		if (Rebate > 4000) Rebate = 4000;
+		if (Rebate > 4475) Rebate = 4475;
 
 		return Rebate * ratio;
 
@@ -114,14 +118,18 @@ function TorontoRebate(inData,Buyer,ScndBuyer,OldBuyer) {
 			ratio = 1;
 		}
 
-	  if ( inDataDecimal <= 55000 ) {
+		if ( inDataDecimal <= 55000 ) {
 			Rebate = (0.005 * inDataDecimal);
-		}else if (inDataDecimal <= 400000 ){
+		}else if (inDataDecimal <= 250000 ){
 			Rebate = ((0.01 * inDataDecimal) - 275);
+		}else if (inDataDecimal <= 400000 ){
+			Rebate = ((0.015 * inDataDecimal) - 1525);
+		}else if (inDataDecimal <= 2000000 ){
+			Rebate = ((0.02 * inDataDecimal) - 3525);
 		}else {
-			Rebate = 3725;
+			Rebate = 4475;
 		}
-		if (Rebate > 3725) Rebate = 3725;
+		if (Rebate > 4475) Rebate = 4475;
 
 		return Rebate * ratio;
 
@@ -137,13 +145,16 @@ function TorontoTransferTax(inData) {
 		return 0.0;
 	}
 
-		if ( inDataDecimal <= 55000 ) {
+	if ( inDataDecimal <= 55000 ) {
 			return 0.005 * inDataDecimal;
+		}else if (inDataDecimal <= 250000 ){
+			return (0.01 * inDataDecimal) - 275
 		}else if (inDataDecimal <= 400000 ){
-			return (0.01 * (inDataDecimal-55000)) + 275;
-		}else {
-			return (0.02 * (inDataDecimal-400000)) + 3725;
+			return (0.015 * inDataDecimal) - 1525
+		}else{
+			return (0.02 * inDataDecimal) - 3525
 		}
+
 } // end function
 
 function set_fees(form,transaction) {
