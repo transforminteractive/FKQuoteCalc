@@ -71,9 +71,9 @@ function OntarioRebate(inData,Buyer,ScndBuyer,OldBuyer) {
 		}else if (inDataDecimal <= 2000000 ){
 			Rebate = ((0.02 * inDataDecimal) - 3525);
 		}else {
-			Rebate = 4475;
+			Rebate = 4000;
 		}
-		if (Rebate > 4475) Rebate = 4475;
+		if (Rebate > 4000) Rebate = 4000;
 
 		return Rebate * ratio;
 
@@ -96,8 +96,10 @@ function TransferTax(inData) {
 			return (0.01 * inDataDecimal) - 275
 		}else if (inDataDecimal <= 400000 ){
 			return (0.015 * inDataDecimal) - 1525
-		}else{
+		}else if (inDataDecimal <= 2000000 ){
 			return (0.02 * inDataDecimal) - 3525
+		}else{
+			return (0.025 * inDataDecimal) - 13525
 		}
 
 } // end function
@@ -148,8 +150,10 @@ function TorontoTransferTax(inData) {
 			return (0.01 * inDataDecimal) - 275
 		}else if (inDataDecimal <= 400000 ){
 			return (0.015 * inDataDecimal) - 1525
-		}else{
+		}else if (inDataDecimal <= 2000000 ){
 			return (0.02 * inDataDecimal) - 3525
+		}else{
+			return (0.025 * inDataDecimal) - 13525
 		}
 
 } // end function
@@ -371,7 +375,7 @@ function clearForm(form){
 	LTT.innerHTML = "$0.00";
 	TLTT.innerHTML = "$0.00";
 	Costs.innerHTML = "$0.00";
-	CostsInfo.innerHTML = "<font color='#FAFAFA'> " + VER + " &copy; 2017 </font>";
+	CostsInfo.innerHTML = "<font color='#F0F0F0'> " + VER + " &copy; 2017 </font>";
 
  	hideDiv('TLAFINF');
 
